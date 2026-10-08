@@ -62,6 +62,9 @@
   
 .book{display:none}.mobile-book{display:block;height:min(79vh,calc(90vw * 1.5));max-height:100%}.topbar{justify-content:space-between;flex-wrap:wrap}.return-link{color:#fff;font-size:14px;padding:10px 12px;border:1px solid #ffffff55;border-radius:10px;text-decoration:none;min-height:44px}.hint{position:static;font-size:13px;color:#fff}.control{min-height:44px}.toolbar{flex-wrap:wrap}.control:focus-visible,.return-link:focus-visible{outline:3px solid #ffb280;outline-offset:3px}
 @media(max-width:760px){.topbar{gap:6px}.brand{display:none}.hint{display:block;font-size:12px}.mobile-book{height:min(74vh,calc(92vw * 1.5))}.control .label{display:inline}.toolbar{gap:6px}.zoom-controls{right:0}.control{padding:0 10px}}
+</style><style>
+.cookie-info{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:min(1100px,calc(100% - 32px));z-index:1000;display:flex;align-items:center;gap:24px;padding:20px 24px;background:#fff;color:#071f52;border:1px solid #071f5230;border-top:4px solid #378c45;border-radius:16px;box-shadow:0 12px 50px #071f5230;font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}.cookie-info[hidden]{display:none}.cookie-info p{margin:4px 0 0;font-size:15px;line-height:1.55}.cookie-info strong{font-size:17px}.cookie-info>div:first-child{flex:1}.cookie-info-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.cookie-info a{color:#071f52;font-weight:700;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}.cookie-info button{font:700 15px system-ui;padding:12px 18px;min-height:44px;border:2px solid #071f52;border-radius:10px;background:#071f52;color:#fff;cursor:pointer;white-space:nowrap;float:none}.cookie-info button:focus-visible,.cookie-info a:focus-visible{outline:3px solid #b83b0c;outline-offset:4px}
+@media(max-width:760px){.cookie-info{align-items:flex-start;flex-direction:column;gap:12px;padding:16px;bottom:10px;width:calc(100% - 20px)}.cookie-info-actions{width:100%;justify-content:space-between}.cookie-info p{font-size:14px}}
 </style>
 </head>
 <body>
@@ -87,7 +90,7 @@
       <div class="sr" aria-live="polite" id="announcer"></div>
     </section>
 
-    <nav class="toolbar" aria-label="Comandi brochure">
+    <nav class="toolbar" aria-label="Comandi brochure"><a class="control" style="font-size:13px;text-decoration:none" href="privacy.html">Privacy e cookie</a>
       <button class="control" id="prev" aria-label="Pagina precedente"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg><span class="label">Indietro</span></button>
       <div class="count" id="count">1 / 8</div>
       <button class="control" id="next" aria-label="Pagina successiva"><span class="label">Avanti</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
@@ -178,6 +181,9 @@
     render();applyZoom();
   })();
   </script>
-</body>
+<aside class="cookie-info" id="cookie-info" aria-label="Informazioni su cookie e privacy" hidden><div><strong>Solo strumenti tecnici, nessuna profilazione nel sito</strong><p>Le pagine del progetto non integrano cookie pubblicitari o strumenti di profilazione. I moduli collegati usano strumenti tecnici per funzionare e proteggere l’invio. Ricordiamo la chiusura di questo avviso sul tuo dispositivo.</p></div><div class="cookie-info-actions"><a href="privacy.html#cookie">Privacy e cookie</a><button type="button" id="cookie-info-close">Ho capito</button></div></aside>
+<script>
+(()=>{const banner=document.getElementById('cookie-info'),close=document.getElementById('cookie-info-close'),key='officina_cookie_info_20261008',year=365*24*60*60*1000;let last=0;try{last=Number(localStorage.getItem(key)||0)}catch(e){}if(Number.isFinite(last)&&last>0&&Date.now()-last>=0&&Date.now()-last<year)return;banner.hidden=false;close.addEventListener('click',()=>{try{localStorage.setItem(key,String(Date.now()))}catch(e){}banner.hidden=true});})();
+</script></body>
 </html>
 
