@@ -59,16 +59,19 @@
       .zoom-controls{right:3px}.zoom-button{width:40px;height:40px}.zoom-button.zoom-value{width:50px;height:34px;font-size:.68rem}
     }
     @media(prefers-reduced-motion:reduce){.sheet,.mobile-page,.control{transition-duration:.01ms!important}}
-  </style>
+  
+.book{display:none}.mobile-book{display:block;height:min(79vh,calc(90vw * 1.5));max-height:100%}.topbar{justify-content:space-between;flex-wrap:wrap}.return-link{color:#fff;font-size:14px;padding:10px 12px;border:1px solid #ffffff55;border-radius:10px;text-decoration:none;min-height:44px}.hint{position:static;font-size:13px;color:#fff}.control{min-height:44px}.toolbar{flex-wrap:wrap}.control:focus-visible,.return-link:focus-visible{outline:3px solid #ffb280;outline-offset:3px}
+@media(max-width:760px){.topbar{gap:6px}.brand{display:none}.hint{display:block;font-size:12px}.mobile-book{height:min(74vh,calc(92vw * 1.5))}.control .label{display:inline}.toolbar{gap:6px}.zoom-controls{right:0}.control{padding:0 10px}}
+</style>
 </head>
 <body>
   <main class="app">
-    <header class="topbar">
+    <header class="topbar"><a class="return-link" href="index.html">← Torna al progetto</a>
       <div class="brand">
-        <div class="brand-mark"><img src="assets/logo-ufficiale.webp" alt="Logo ufficiale" style="width:32px;height:32px;object-fit:contain"></div>
+        <div class="brand-mark"><img src="assets/logo-web.webp" alt="Logo ufficiale" style="width:32px;height:32px;object-fit:contain"></div>
         <div class="brand-text"><strong>L’Officina del Talento SVT</strong><span>Progetto e donazioni · ASD • APS</span></div>
       </div>
-      <div class="hint">Tocca un lato o scorri per sfogliare</div>
+      <div class="hint">Una pagina alla volta · Usa + per leggere i dettagli</div>
     </header>
 
     <section class="book-shell" id="reader" aria-label="Brochure sfogliabile">
@@ -114,7 +117,7 @@
       desktop.appendChild(sheet);sheets.push(sheet);
     }
     const mobilePages=pages.map((src,i)=>{const el=document.createElement('div');el.className='mobile-page';el.style.zIndex=String(pages.length-i);el.innerHTML=`<img src="${src}" alt="Pagina ${i+1}" draggable="false">`;mobile.appendChild(el);return el});
-    function activeBook(){return innerWidth>760?desktop:mobile}
+    function activeBook(){return mobile}
     function clampPan(){
       const book=activeBook(),maxX=Math.max(0,book.offsetWidth*(zoom-1)/2),maxY=Math.max(0,book.offsetHeight*(zoom-1)/2);
       panX=Math.max(-maxX,Math.min(maxX,panX));panY=Math.max(-maxY,Math.min(maxY,panY));
@@ -132,7 +135,7 @@
     function render(){
       sheets.forEach((s,i)=>{const flipped=page>i*2;s.classList.toggle('flipped',flipped);s.style.zIndex=String(flipped?10+i:30-i)});
       mobilePages.forEach((p,i)=>p.className='mobile-page '+(i<page?'past':i===page?'active':'future'));
-      const desktopMode=innerWidth>760;
+      const desktopMode=false;
       count.textContent=desktopMode&&page>0&&page<pages.length-1?`${page+1}–${page+2} / ${pages.length}`:`${page+1} / ${pages.length}`;
       btnPrev.disabled=tapPrev.disabled=page===0;btnNext.disabled=tapNext.disabled=page===pages.length-1;
       announce.textContent=`Pagina ${page+1} di ${pages.length}`;
@@ -140,7 +143,7 @@
     function go(delta){
       if(busy)return;const target=Math.max(0,Math.min(pages.length-1,page+delta));if(target===page)return;
       setZoom(1);
-      const desktopMode=innerWidth>760;
+      const desktopMode=false;
       const step=desktopMode?(delta>0?(page===0?1:2):(page===pages.length-1?2:2)):1;
       const destination=Math.max(0,Math.min(pages.length-1,page+(delta>0?step:-step)));
       const sheet=sheets[Math.floor((delta>0?page:destination)/2)];
@@ -177,3 +180,4 @@
   </script>
 </body>
 </html>
+
