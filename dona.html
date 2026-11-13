@@ -11,8 +11,14 @@
 <title>Al via la raccolta donazioni · L’Officina del Talento SVT</title>
 <style>
   * { box-sizing: border-box; }
-  body { margin: 0; padding: clamp(0.5rem, 2vw, 1rem); background: #071732; color: #081c49; font-family: system-ui, sans-serif; }
-  main { width: min(100%, 36rem); margin: auto; background: #fffaf0; overflow: hidden; border-radius: 0.45rem; }
+  body { margin: 0; min-height: 100vh; padding: clamp(0.5rem, 2vw, 1rem); isolation: isolate;
+    background: radial-gradient(ellipse at 50% 42%, #fff 0%, #fffaf0 56%, #f5e9d3 100%);
+    color: #081c49; font-family: system-ui, sans-serif; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: url("assets/logo-web.webp") 50% 48% / clamp(48rem, 94vw, 78rem) auto no-repeat;
+    opacity: 0.28; filter: blur(8px); mix-blend-mode: multiply; }
+  main { width: min(100%, 36rem); margin: auto; background: #fffaf0; overflow: hidden; border-radius: 0.45rem;
+    box-shadow: 0 1rem 3rem rgb(47 30 14 / 19%), 0 0 0 1px rgb(47 30 14 / 8%); }
   .header { position: relative; width: 100%; aspect-ratio: 1122 / 655; overflow: hidden; }
   .header img { position: absolute; inset: 0 auto auto 0; display: block; width: 100%; height: auto; }
   .copy { text-align: center; padding: 0.8rem clamp(1rem, 4vw, 2.1rem) 1.15rem; background: linear-gradient(180deg, #fffdf7, #fff4d6); }
